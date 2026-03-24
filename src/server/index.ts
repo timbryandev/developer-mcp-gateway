@@ -175,7 +175,9 @@ async function start(): Promise<void> {
     });
     
     // Initialize the gateway (loads configs and connects to enabled servers)
-    gateway.initialize();
+    gateway.initialize().catch((err) => {
+      console.error("[Gateway] Initialization failed unexpectedly:", err);
+    });
 
     // ─── Graceful Shutdown ─────────────────────────────────────────────────
 
