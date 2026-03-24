@@ -145,9 +145,8 @@ app.use(
 
 async function start(): Promise<void> {
   try {
-    // Initialize the gateway (loads configs and connects to enabled servers)
-    await gateway.initialize();
 
+    // Start the HTTP server and listen for incoming requests
     const server = app.listen(PORT, HOST, () => {
       console.log("");
       console.log("╔══════════════════════════════════════════════════════╗");
@@ -174,6 +173,9 @@ async function start(): Promise<void> {
       );
       console.log("");
     });
+    
+    // Initialize the gateway (loads configs and connects to enabled servers)
+    gateway.initialize();
 
     // ─── Graceful Shutdown ─────────────────────────────────────────────────
 
